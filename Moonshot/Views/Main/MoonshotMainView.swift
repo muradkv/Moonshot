@@ -31,6 +31,16 @@ struct MoonshotMainView: View {
                         .accessibilityLabel(isGrid ? "Switch to list view" : "Switch to grid view")
                 }
             }
+            .navigationDestination(for: Mission.self) { mission in
+                let detailViewModel = MissionViewModel(
+                    mission: mission,
+                    astronauts: viewModel.astronauts
+                )
+                MissionView(viewModel: detailViewModel)
+            }
+            .navigationDestination(for: Astronaut.self) { astronaut in
+                AstronautView(astronaut: astronaut)
+            }
         }
     }
 }

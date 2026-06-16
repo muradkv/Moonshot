@@ -13,14 +13,7 @@ struct MissionListView: View {
     var body: some View {
         List {
             ForEach(viewModel.missions) { mission in
-                NavigationLink {
-                    let missionVM = MissionViewModel(
-                        mission: mission,
-                        astronauts: viewModel.astronauts
-                    )
-                    
-                    MissionView(viewModel: missionVM)
-                } label: {
+                NavigationLink(value: mission) {
                     VStack {
                         Image(mission.image)
                             .resizable()
