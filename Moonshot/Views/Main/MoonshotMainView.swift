@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct MoonshotMainView: View {
     @State private var isGrid = true
     
     let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
@@ -44,5 +44,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    MoonshotMainView()
 }
