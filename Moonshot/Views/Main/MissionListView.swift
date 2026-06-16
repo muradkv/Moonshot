@@ -8,16 +8,15 @@
 import SwiftUI
 
 struct MissionListView: View {
-    let astronauts: [String: Astronaut]
-    let missions: [Mission]
+    let viewModel: MoonshotMainViewModel
     
     var body: some View {
         List {
-            ForEach(missions) { mission in
+            ForEach(viewModel.missions) { mission in
                 NavigationLink {
                     MissionView(
                         mission: mission,
-                        astronauts: astronauts
+                        astronauts: viewModel.astronauts
                     )
                 } label: {
                     VStack {
@@ -56,11 +55,8 @@ struct MissionListView: View {
 }
 
 #Preview {
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    let missions: [Mission] = Bundle.main.decode("missions.json")
-    
     NavigationStack {
-        MissionListView(astronauts: astronauts, missions: missions)
+        MissionListView(viewModel: MoonshotMainViewModel())
             .background(.darkBackground)
     }
 }

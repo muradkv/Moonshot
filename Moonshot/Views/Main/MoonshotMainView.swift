@@ -8,24 +8,16 @@
 import SwiftUI
 
 struct MoonshotMainView: View {
+    let viewModel: MoonshotMainViewModel
     @State private var isGrid = true
-    
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
-    let missions: [Mission] = Bundle.main.decode("missions.json")
     
     var body: some View {
         NavigationStack {
             Group {
                 if isGrid {
-                    MissionGridView(
-                        astronauts: astronauts,
-                        missions: missions
-                    )
+                    MissionGridView(viewModel: viewModel)
                 } else {
-                    MissionListView(
-                        astronauts: astronauts,
-                        missions: missions
-                    )
+                    MissionListView(viewModel: viewModel)
                 }
             }
             .navigationTitle("Moonshot")
@@ -44,5 +36,5 @@ struct MoonshotMainView: View {
 }
 
 #Preview {
-    MoonshotMainView()
+    MoonshotMainView(viewModel: MoonshotMainViewModel())
 }

@@ -9,9 +9,11 @@ import SwiftUI
 
 @main
 struct MoonshotApp: App {
+    @State private var mainViewModel = MoonshotMainViewModel()
+    
     var body: some Scene {
         WindowGroup {
-            MoonshotMainView()
+            MoonshotMainView(viewModel: mainViewModel)
         }
     }
 }
