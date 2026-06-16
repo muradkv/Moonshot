@@ -8,25 +8,12 @@
 import SwiftUI
 
 struct MissionView: View {
-    let mission: Mission
-    let crew: [CrewMember]
-    
-    init(mission: Mission, astronauts: [String: Astronaut]) {
-        self.mission = mission
-        
-        self.crew = mission.crew.map { member in
-            if let astronaut = astronauts[member.name] {
-                return CrewMember(role: member.role, astronaut: astronaut)
-            } else {
-                fatalError("Missing \(member.name)")
-            }
-        }
-    }
+    let viewModel: MissionViewModel
     
     var body: some View {
         ScrollView {
             VStack {
-                Image(mission.image)
+                Image(viewModel.mission.image)
                     .resizable()
                     .scaledToFit()
                     .containerRelativeFrame(.horizontal) { width, axis in
@@ -34,7 +21,7 @@ struct MissionView: View {
                     }
                     .padding(.top)
                 
-                Text(mission.formattedLaunchDate)
+                Text(viewModel.mission.formattedLaunchDate)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fontWeight(.semibold)
@@ -48,26 +35,26 @@ struct MissionView: View {
                         .font(.title.bold())
                         .padding(.bottom, 5)
                     
-                    Text(mission.description)
+                    Text(viewModel.mission.description)
                     
                     CustomViewDivider()
                 }
                 .padding(.horizontal)
                 
-                CrewSectionView(crew: crew)
+                CrewSectionView(crew: viewModel.crew)
             }
             .padding(.bottom)
         }
-        .navigationTitle(mission.displayName)
+        .navigationTitle(viewModel.mission.displayName)
         .navigationBarTitleDisplayMode(.inline)
         .background(.darkBackground)
     }
 }
 
 #Preview {
-    let missions: [Mission] = Bundle.main.decode("missions.json")
-    let astronauts: [String: Astronaut] = Bundle.main.decode("astronauts.json")
+    let mainVM = MoonshotMainViewModel()
+    let vm = MissionViewModel(mission: mainVM.missions[0], astronauts: mainVM.astronauts)
     
-    return MissionView(mission: missions[0], astronauts: astronauts)
+    return MissionView(viewModel: vm)
         .preferredColorScheme(.dark)
 }

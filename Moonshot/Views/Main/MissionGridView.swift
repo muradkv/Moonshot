@@ -19,10 +19,12 @@ struct MissionGridView: View {
             LazyVGrid(columns: columns) {
                 ForEach(viewModel.missions) { mission in
                     NavigationLink {
-                        MissionView(
+                        let missionVM = MissionViewModel(
                             mission: mission,
                             astronauts: viewModel.astronauts
                         )
+                                                
+                        MissionView(viewModel: missionVM)
                     } label: {
                         VStack {
                             Image(mission.image)
