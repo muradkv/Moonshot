@@ -36,3 +36,14 @@ Beyond the core course requirements, the entire codebase was meticulously refact
 * **Decoupled Domain Logic:** Created an isolated `MissionViewModel` to handle the complex relational mapping between `Mission` and `Astronaut` entities. This keeps `MissionView` completely stateless, strictly adhering to the Single Responsibility Principle.
 
 🔗 **[Full project description here](https://www.hackingwithswift.com/100/swiftui/39)**
+
+## Project Versioning & Changelog
+
+* **v2.0.0 (Architecture Modernization)** — `commit: f9683ce`
+  Complete rewrite into MVVM using iOS 17+ `@Observable` state engines with parent-level Dependency Injection (DI). Integrates high-performance lazy data-driven routing via centralized `.navigationDestination` modifiers.
+
+* **v1.1.0 (Feature Expansion & Layout Tuning)** — `commit: 032ea69`
+  Minor release completing the challenge phase. Implements a dynamic grid/list layout toggle subsystem driven by toolbar interactions and adds space program launch date presentations.
+
+* **v1.0.0 (Functional MVP)** — `commit: 89110ab`
+  Initial baseline release matching the core course curriculum. Establishes generic JSON decoding layers, implements relational data merging across assets, and sets up deep layout navigation.
