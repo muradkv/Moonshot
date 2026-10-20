@@ -21,12 +21,13 @@ Moonshot allows users to explore missions, learn about the astronauts who made t
 
 * **Dynamic Layouts:** Seamlessly toggle the main screen between a rich visual grid and a compact list view via an accessible toolbar button.
 * **Deep Navigation Flow:** Explore missions to see a horizontally scrolling roster of the crew, and tap on any crew member to view their detailed biographical profile.
+* **VoiceOver Accessibility:** Grouped mission and crew cards, semantic section headers, natural launch date readouts (replacing raw `"N/A"` strings), and hidden decorative graphics for effortless screen reader navigation.
 * **Rich Visuals:** Custom dark-mode color themes, `containerRelativeFrame()` for precise UI scaling, and full-bleed image displays.
 * **Hierarchical Decoding:** Fast and safe JSON parsing mapping two distinct data sets (Missions and Astronauts) into a unified relational graph.
 
 ## About the Project & Challenge
 
-This application was originally built to fulfill **Project 8 (Days 39-42)** of the SwiftUI learning path by Paul Hudson (Hacking with Swift). The core educational goal was to master Generics, complex nested `Codable` protocols, and custom `ScrollView` layouts.
+This application was originally built to fulfill **Project 8 (Days 39-42)** of the SwiftUI learning path by Paul Hudson (Hacking with Swift), and later enhanced with a full accessibility overhaul in **Project 15 (Day 76 — Accessibility)**. The core educational goal was to master Generics, complex nested `Codable` protocols, and custom `ScrollView` layouts.
 
 Beyond the core course requirements, the entire codebase was meticulously refactored into a commercial-grade **MVVM** architecture, completely decoupling the UI from data processing. Key concepts and best practices implemented include:
 
@@ -34,10 +35,15 @@ Beyond the core course requirements, the entire codebase was meticulously refact
 * **MVVM & @Observable:** Migrated from a procedural data-loading approach to a modern Observation engine. `MoonshotMainViewModel` now acts as the single source of truth for the app's core JSON assets, enforcing state encapsulation with `private(set)`.
 * **Dependency Injection (DI):** Instantiated the root ViewModel strictly at the `App` layer, passing it down through `let` constants. This enforces unidirectional data flow and cleanly separates state ownership from the UI layer.
 * **Decoupled Domain Logic:** Created an isolated `MissionViewModel` to handle the complex relational mapping between `Mission` and `Astronaut` entities. This keeps `MissionView` completely stateless, strictly adhering to the Single Responsibility Principle.
+* **Full Accessibility Audit (Day 76 — Project 15 Challenge):** Added an `accessibleLaunchDate` computed property on `Mission` for natural date and `"Never launched"` announcements, grouped mission and crew cards into single focusable elements, marked section titles with `.isHeader` traits, and hidden decorative badges, portraits, and custom dividers from VoiceOver.
 
 🔗 **[Full project description here](https://www.hackingwithswift.com/100/swiftui/39)**
+🔗 **[Accessibility challenge (Day 76)](https://www.hackingwithswift.com/100/swiftui/76)**
 
 ## Project Versioning & Changelog
+
+* **v2.1.0 (Full VoiceOver Accessibility Audit)** — `commit: 11c6d81`  
+  Completed the Day 76 accessibility challenge. Grouped mission and crew cards for single-swipe announcements, added `accessibleLaunchDate` to replace `"N/A"` with `"Never launched"`, assigned `.isHeader` traits to section titles, and hidden decorative images and dividers from screen readers.
 
 * **v2.0.0 (Architecture Modernization)** — `commit: f9683ce`
   Complete rewrite into MVVM using iOS 17+ `@Observable` state engines with parent-level Dependency Injection (DI). Integrates high-performance lazy data-driven routing via centralized `.navigationDestination` modifiers.
