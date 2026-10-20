@@ -16,6 +16,7 @@ struct CrewSectionView: View {
                 .font(.title.bold())
                 .padding(.horizontal)
                 .padding(.bottom, 5)
+                .accessibilityAddTraits(.isHeader)
             
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
@@ -40,6 +41,8 @@ struct CrewSectionView: View {
                                 }
                             }
                             .padding(.horizontal)
+                            .accessibilityElement()
+                            .accessibilityLabel("\(crewMember.astronaut.name), \(crewMember.role)")
                         }
                     }
                 }

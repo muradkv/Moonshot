@@ -44,6 +44,8 @@ struct MissionGridView: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .stroke(.lightBackground)
                         }
+                        .accessibilityElement()
+                        .accessibilityLabel("\(mission.displayName), \(mission.accessibleLaunchDate)")
                     }
                 }
             }

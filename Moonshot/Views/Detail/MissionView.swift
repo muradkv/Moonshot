@@ -20,12 +20,14 @@ struct MissionView: View {
                         width * 0.6
                     }
                     .padding(.top)
+                    .accessibilityHidden(true)
                 
                 Text(viewModel.mission.formattedLaunchDate)
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
                     .fontWeight(.semibold)
                     .padding(.top)
+                    .accessibilityLabel("Launch date: \(viewModel.mission.accessibleLaunchDate)")
                 
                 CustomViewDivider()
                     .padding(.horizontal)
@@ -34,6 +36,7 @@ struct MissionView: View {
                     Text("Mission Highlights")
                         .font(.title.bold())
                         .padding(.bottom, 5)
+                        .accessibilityAddTraits(.isHeader)
                     
                     Text(viewModel.mission.description)
                     

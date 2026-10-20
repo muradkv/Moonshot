@@ -39,7 +39,8 @@ struct MissionListView: View {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(.lightBackground)
                     }
-                    
+                    .accessibilityElement()
+                    .accessibilityLabel("\(mission.displayName), \(mission.accessibleLaunchDate)")
                 }
                 .listRowBackground(Color.darkBackground)
                 .listRowSeparator(.hidden)
